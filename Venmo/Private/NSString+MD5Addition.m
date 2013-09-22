@@ -25,8 +25,11 @@
     for(NSInteger count = 0; count < CC_MD5_DIGEST_LENGTH; count++){
         [outputString appendFormat:@"%02x",outputBuffer[count]];
     }
-    
+#if __has_feature(objc_arc)
+    return outputString;
+#else
     return [outputString autorelease];
+#endif
 }
 
 @end
